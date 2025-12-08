@@ -1,3 +1,6 @@
+#pragma once
+#include "NodoGrafo.h"
+
 class NodoBPlusBase {
   private:
     int* claves; // vector de ids de NodoGrafo
