@@ -1,8 +1,7 @@
-#ifndef system.h
-#define system.h
+#pragma once
 
 #include <string>
-#include "nodo_grafo.h"
+#include "NodoGrafo.h"
 #include "bplus.h"
 
 extern int next;
