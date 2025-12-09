@@ -6,7 +6,7 @@
 
 extern int next;
 extern long access;
-extern ArbolBPlus index;
+extern bplus index;
 extern int numRute;
 
 void insertar_nodo_grafo(int clave, NodoGrafo* nodo_grafo);
