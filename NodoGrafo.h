@@ -6,7 +6,7 @@ protected:
     int id;
     std::string nombre;
 
-    int* lista_padres;
+    int* padres;
     int num_padres;
     int cap_padres;
 
