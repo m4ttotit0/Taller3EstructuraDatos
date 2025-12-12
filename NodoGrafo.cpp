@@ -2,7 +2,7 @@
 
 NodoGrafo::NodoGrafo(int _id, const std::string& _nombre)
     : id(_id), nombre(_nombre),
-      padres(nullptr), num_padres(0), cap_padres(0) {}
+      lista_padres(nullptr), num_padres(0), cap_padres(0) {}
 
 NodoGrafo::~NodoGrafo() {
     delete [] padres;
@@ -30,14 +30,14 @@ int NodoGrafo::get_num_padres() const { return num_padres; }
 
 void NodoGrafo::agregar_padre(int id_padre) {
     asegurar_capacidad_padres();
-    padres[num_padres++] = id_padre;
+    lista_padres[num_padres++] = id_padre;
 }
 
 void NodoGrafo::eliminar_padre(int id_padre) {
     for (int i = 0; i < num_padres; ++i) {
-        if (padres[i] == id_padre) {
+        if (lista_padres[i] == id_padre) {
             for (int j = i + 1; j < num_padres; ++j)
-                padres[j - 1] = padres[j];
+                lista_padres[j - 1] = lista_padres[j];
             --num_padres;
             break;
         }
