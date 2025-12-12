@@ -1,5 +1,5 @@
 #pragma once
-#include " NodoGrafo .h"
+#include "NodoGrafo.h"
 
 const int ORDEN_BPLUS = 4;
 
