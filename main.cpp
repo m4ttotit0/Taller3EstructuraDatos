@@ -1,6 +1,8 @@
 #include <iostream>
 #include "system.h"
 
+using namespace std;
+
 void menu() {
   std::cout << "\n Sistema de Archivos \n";
   std::cout << "1. Crear archivo\n";
@@ -10,35 +12,98 @@ void menu() {
   std::cout << "5. Obtener rutas completas\n";
   std::cout << "6. Calcular espacio ocupado\n";
   std::cout << "9. Salir\n";
-  std::cout << "Ingrese su opcion: ";
+  std::cout << "Ingrese su opcion: \n";
 } 
 
-int main() {
-  // Crear raíz
-    int id_root = nextId++;
-    NodoDirectorio* root = new NodoDirectorio(id_root, "root");
-    insertar_nodo_grafo(id_root, root);
+int main()
+{
+  int id_root = nextId++;
+  NodoDirectorio *root = new NodoDirectorio(id_root, "root");
+  insertar_nodo_grafo(id_root, root);
 
-    int opcion;
-    do {
-        mostrar_menu();
-        std::cin >> opcion;
+  cout << "Sistema montado. ID: " << id_root << "\n";
 
-        if (opcion == 1) {
-            //Llamar función crear archivo
-        } else if (opcion == 2) {
-          //eliminar archivo
-        } else if (opcion == 3) {
-          //lista contenido
-        } else if (opcion == 4) {
-          //buscar arch por id
-        } else if (opcion == 5) {
-          //rutas completas
-        } else if (option == 6){
-          //calcular espacio
-	      }
-	} while(opcion != 9);
+  int opcion;
+  do
+  {
+    menu();
+    if (!(cin >> opcion))
+    {
+      cin.clear();
+      cin.ignore(10000, '\n');
+      opcion = 0;
+    }
 
-	return 0;
+    switch (opcion)
+    {
+    case 1:
+    {
+      int id_padre;
+      cout << "ID Directorio Padre: ";
+      cin >> id_padre;
+      crear_nodo(id_padre);
+      break;
+    }
+    case 2:
+    {
+      int id_arch, id_padre;
+      cout << "ID Archivo: ";
+      cin >> id_arch;
+      cout << "ID Directorio Padre: ";
+      cin >> id_padre;
+      eliminar_archivo(id_arch, id_padre);
+      break;
+    }
+    case 3:
+    {
+      int id_dir;
+      cout << "ID Directorio: ";
+      cin >> id_dir;
+      listar_contenido(id_dir);
+      break;
+    }
+    case 4:
+    {
+      int id;
+      cout << "ID a buscar: ";
+      cin >> id;
+      NodoGrafo *n = buscar_nodo_grafo(id);
+      if (!n)
+        cout << "No encontrado.\n";
+      else
+        cout << "Encontrado\n";
+      break;
+    }
+    case 5:
+    {
+      int id;
+      cout << "ID Archivo: ";
+      cin >> id;
+      string *rutas = obtener_rutas_completas(id);
+      if (rutas)
+      {
+        cout << "Rutas encontradas (" << numRute << "):\n";
+        for (int i = 0; i < numRute; ++i)
+          cout << rutas[i] << "\n";
+        delete[] rutas;
+      }
+      break;
+    }
+    case 6:
+    {
+      int id;
+      cout << "ID Directorio: ";
+      cin >> id;
+      calcular_espacio_ocupado(id);
+      break;
+    }
+    case 9:
+      cout << "Saliendo...\n";
+      break;
+    default:
+      cout << "Opcion invalida.\n";
+    }
+  } while (opcion != 9);
+
+  return 0;
 }
-
